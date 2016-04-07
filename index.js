@@ -14,7 +14,6 @@ var pageSchema = mongoose.Schema({
   author : String,
   text : String
 });
-
 var Page = mongoose.model('Page', pageSchema);
 
 app.get('/', function(req, res) {
