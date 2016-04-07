@@ -1,0 +1,16 @@
+{
+  "name": "nodewiki",
+  "version": "1.0.0",
+  "description": "A simple wiki in Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Ashish Gaurav <agaurav77@yahoo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.11",
+    "morgan": "^1.7.0"
+  }
+}
