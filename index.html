@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});		
+		</script>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,7 +33,7 @@
       </div>
       {% autoescape false %}
       <p>{{ text }}</p>
-      {% autoescape false %}
+      {% endautoescape %}
     </div>
 
   </body>

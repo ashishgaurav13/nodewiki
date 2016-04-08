@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');
 var swig = require('swig');
 var bodyParser = require('body-parser');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 
 // extended global replace
 String.prototype.replaceAll = function(search, replacement) {
@@ -42,7 +42,7 @@ app.get('/:url', function(req, res) {
       res.end(swig.renderFile('./index.html', {
         link: "/edit/"+page.url,
         title: page.title,
-        text: markdown.toHTML(page.text
+        text: marked(page.text
 					.replaceAll('\r\n', '\n'))
       }));
     } else {
