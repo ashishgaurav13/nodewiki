@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>nodewiki - edit</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form method="POST" action="/save/{{ url }}">
+      <div class="page-header">
+        <input type="text" name="title" placeholder="Give it a good short title." value="{{ title }}"></input>
+      </div>
+      <textarea name="text" rows="3" placeholder="Edit stuff here.">{{ text }}</textarea>
+      <br><br><br><br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% if keepdiscard %}
+      <button class="btn btn-warning" onclick="window.location='/{{ url }}';">Discard</button>
+      {% endif %}
+    </div>
+  </body>
+</html>

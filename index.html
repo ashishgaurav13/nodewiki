@@ -10,9 +10,13 @@
     <div class="container">
       <div class="page-header">
         <h1>{{ title }}</h1>
-        <img src="img/edit.png" style="float:right;"/>
       </div>
-      <p>{{ text }}</p>
+      {% autoescape false %}
+      <p style="float:left;">{{ text }}</p>
+      {% autoescape false %}
+    </div>
+    <div class="container">
+      <a href="{{ link }}">{{ linktext }}</a>
     </div>
   </body>
 </html>
