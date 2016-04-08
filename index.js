@@ -5,6 +5,8 @@ var morgan = require('morgan');
 var swig = require('swig');
 var bodyParser = require('body-parser');
 var marked = require('marked');
+var multer = require('multer');
+
 
 // extended global replace
 String.prototype.replaceAll = function(search, replacement) {
@@ -40,7 +42,7 @@ app.get('/:url', function(req, res) {
     if (err) res.send(err);
     if (page) {
       res.end(swig.renderFile('./index.html', {
-        link: "/edit/"+page.url,
+        link: page.url,
         title: page.title,
         text: marked(page.text
 					.replaceAll('\r\n', '\n'))
@@ -77,6 +79,24 @@ app.post('/save/:url', function(req, res) {
       res.redirect('/'+req.params.url);
     });
   });
+});
+
+app.get('/upload/image/:mode/:url', function (req, res) {
+	res.end(swig.renderFile('./upload.html', {
+		mode: req.params.mode,
+		url: req.params.url	
+	}));
+});
+
+app.post('/upload/image/:mode/:url', multer({storage: multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/img/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, req.body.imgname)
+  }
+})}).single('image'), function (req, res) {
+	res.redirect((req.params.mode == 'view' ? '/' : '/edit/')+req.params.url);	
 });
     
 app.listen(8080);

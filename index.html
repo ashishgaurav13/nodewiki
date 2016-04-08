@@ -3,7 +3,7 @@
   <head>
     <title>nodewiki - {{ title }}</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="/css/extra.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -21,7 +21,8 @@
       <div id="navbar">
         <ul class="nav navbar-nav">
           <li class="active"><a>View</a></li>
-          <li><a href="{{ link }}">Edit</a></li>
+          <li><a href="/edit/{{ link }}">Edit</a></li>
+          <li><a href="/upload/image/view/{{ link }}">Upload</a></li>
         </ul>
       </div>
     </div>

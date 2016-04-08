@@ -3,7 +3,7 @@
   <head>
     <title>nodewiki - edit</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="/css/extra.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="/js/autosize.min.js"></script>
@@ -34,6 +34,7 @@
         <ul class="nav navbar-nav">
           <li><a href="/{{ link }}">View</a></li>
           <li class="active"><a>Edit</a></li>
+          <li><a href="/upload/image/edit/{{ link }}">Upload</a></li>
         </ul>
       </div>
     </div>
@@ -46,8 +47,15 @@
       </div>
       <textarea id="textbox" class="col-xs-12" name="text" rows="3" placeholder="Edit stuff here.">{{ text }}</textarea>
 		  <button type="submit" class="btn btn-primary">Submit</button>
-	    </form>									
+	    </form>
+
     </div>
+		<br><br>
+		<footer class="footer">
+      <div class="container">
+			<p class="text-muted"> You may lose changes if you choose to upload a file. It is recommended to save your work and then upload a file from the view page. </p>
+			</div>
+		</footer>
 
   </body>
   <script>

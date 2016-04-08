@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>nodewiki - upload</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/extra.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<style>
+		input[type=text] {
+      font-size:36px;
+			border: 0px solid;
+    }
+		input[type=text]:focus {
+      outline: none;
+		}
+		</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">nodewiki</a>
+      </div>
+      <div id="navbar">
+        <ul class="nav navbar-nav">
+          <li><a>View</a></li>
+          <li><a href="{{ link }}">Edit</a></li>
+          <li class="active"><a>Upload</a></li>
+        </ul>
+      </div>
+    </div>
+    </nav>  
+ 
+    <div class="container">
+      <form action="/upload/image/{{ mode }}/{{ url }}" method="POST" enctype="multipart/form-data">
+				<div class="page-header">
+        <input class="col-xs-12" type="text" autocomplete="off" name="imgname" placeholder="Choose an image name (be careful, it can overwrite something else)"></input>
+				</div>
+				<br><br>
+				<label class="btn btn-primary" for="selector">	
+					<input id="selector" type="file" name="image">
+				</label>
+				<br><br>
+				<input type="submit" value="Upload Image" name="submit" class="btn btn-primary">
+			</form>
+    </div>
+
+  </body>
+</html>
