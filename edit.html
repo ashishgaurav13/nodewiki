@@ -8,17 +8,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="/js/autosize.min.js"></script>
     <style>
-    input[type=text], textarea {
-      border: 0px solid;
-    }
-    input[type=text]:focus, textarea {
+		input[type=text]:focus {
       outline: none;
     }
-    input[type=text] {
-      font-size:36px;
-    }
     textarea {
-      overflow:hidden;
+      outline: none;
+		  border: 0px solid;    
+		  overflow:hidden;
       resize:none;
       margin-bottom: 100px;
     }
@@ -36,6 +32,13 @@
           <li class="active"><a>Edit</a></li>
           <li><a href="/upload/image/edit/{{ link }}">Upload</a></li>
         </ul>
+				<form class="navbar-form navbar-right" role="search" method="POST" action="/search/">
+  				<div class="form-group">
+    				<input id="searchbox" type="text" class="form-control">
+  				</div>
+  				<button type="submit" class="btn btn-default">Search Pages and Images</button>
+				</form>
+
       </div>
     </div>
     </nav>  
@@ -43,7 +46,7 @@
     <div class="container">
       <form method="POST" action="/save/{{ link }}">
       <div class="page-header">
-        <input class="col-xs-12" type="text" autocomplete="off" name="title" placeholder="Give it a good short title." value="{{ title }}"></input>
+        <input class="col-xs-12" type="text" style="border:0px solid;font-size:36px;" autocomplete="off" name="title" placeholder="Try giving a good short title." value="{{ title }}"></input>
       </div>
       <textarea id="textbox" class="col-xs-12" name="text" rows="3" placeholder="Edit stuff here.">{{ text }}</textarea>
 		  <button type="submit" class="btn btn-primary">Submit</button>
@@ -53,7 +56,7 @@
 		<br><br>
 		<footer class="footer">
       <div class="container">
-			<p class="text-muted"> You may lose changes if you choose to upload a file. It is recommended to save your work and then upload a file from the view page. </p>
+			<p class="text-muted"> You may lose changes if you choose to upload a file or search something. It is recommended to save your work and then upload a file from the view page. </p>
 			</div>
 		</footer>
 

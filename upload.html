@@ -7,10 +7,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<style>
-		input[type=text] {
-      font-size:36px;
-			border: 0px solid;
-    }
 		input[type=text]:focus {
       outline: none;
 		}
@@ -28,6 +24,12 @@
           <li><a href="{{ link }}">Edit</a></li>
           <li class="active"><a>Upload</a></li>
         </ul>
+				<form class="navbar-form navbar-right" role="search" method="POST" action="/search/">
+  				<div class="form-group">
+    				<input id="searchbox" type="text" class="form-control">
+  				</div>
+  				<button type="submit" class="btn btn-default">Search Pages and Images</button>
+				</form>
       </div>
     </div>
     </nav>  
@@ -35,7 +37,7 @@
     <div class="container">
       <form action="/upload/image/{{ mode }}/{{ url }}" method="POST" enctype="multipart/form-data">
 				<div class="page-header">
-        <input class="col-xs-12" type="text" autocomplete="off" name="imgname" placeholder="Choose an image name (be careful, it can overwrite something else)"></input>
+        <input class="col-xs-12" type="text" style="font-size:36px;border:0px solid;" autocomplete="off" name="imgname" placeholder="An image name here, with extension please (overwrites previous)"></input>
 				</div>
 				<br><br>
 				<label class="btn btn-primary" for="selector">	
