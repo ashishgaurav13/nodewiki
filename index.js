@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');
 var swig = require('swig');
 var bodyParser = require('body-parser');
+var markdown = require('markdown').markdown;
 
 // extended global replace
 String.prototype.replaceAll = function(search, replacement) {
@@ -34,14 +35,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:url', function(req, res) {
+  if (req.params.url !== 'favicon.ico')
   Page.findOne({url: req.params.url}, function(err, page) {
     if (err) res.send(err);
     if (page) {
       res.end(swig.renderFile('./index.html', {
-        linktext: "Edit this page",
         link: "/edit/"+page.url,
         title: page.title,
-        text: page.text.replaceAll('\r\n', "<br>")
+        text: markdown.toHTML(page.text
+					.replaceAll('\r\n', '\n'))
       }));
     } else {
       res.redirect('/edit/'+req.params.url);
@@ -52,11 +54,12 @@ app.get('/:url', function(req, res) {
 app.get('/edit/:url', function(req, res) {
   Page.findOne({url: req.params.url}, function(err, page) {
     if (err) res.send(err);
+		console.log(req.params.url);
     res.end(swig.renderFile('./edit.html', {
-      url: req.params.url,
+      link: req.params.url,
       title: (page ? page.title : ""),
       text: (page ? page.text : ""),
-      keepdiscard: (page? true : false)
+      keepdiscard: (page ? true : false)
     }));
   });
 });
