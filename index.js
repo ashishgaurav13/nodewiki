@@ -30,10 +30,17 @@ var pageSchema = mongoose.Schema({
 var Page = mongoose.model('Page', pageSchema);
 
 app.get('/', function(req, res) {
-  Page.find(function(err, pages) {
-    if (err) res.send(err);
-    res.json(pages);
-  });
+	Page.findOne({url: 'home'}, function(err, page) {
+		if (err) res.send(err);
+    if (!page) {
+      page = new Page({url: req.params.url});
+    }      
+    page.title = "Welcome to nodewiki";
+    page.text = "Installation\r\n========\r\nYou must have\r\n* nodejs\r\n* mongodb\r\n\r\nClone the repository, and inside the project directory, do\r\n\r\n    $ npm install\r\n\r\nRunning the code\r\n=============\r\nJust do\r\n\r\n    $ npm start\r\n\r\nand the wiki should start. You can navigate to localhost:8080, and you should be greeted by the home page.\r\n\r\nFeatures\r\n=======\r\n* MathJax integration\r\n* basic image uploading\r\n* markdown support via marker\r\n* on the go creation of new pages\r\n* pages searchable\r\n\r\nTo Do\r\n=====\r\n* more theming\r\n* image uploading without losing edit progress\r\n* image search\r\n* all searches via dropdown\r\n* deleting pages";
+    page.save(function(err, page) {
+      if (err) res.send(err);
+			res.redirect('/home');
+    });  
 });
 
 app.get('/:url', function(req, res) {
@@ -97,6 +104,16 @@ app.post('/upload/image/:mode/:url', multer({storage: multer.diskStorage({
   }
 })}).single('image'), function (req, res) {
 	res.redirect((req.params.mode == 'view' ? '/' : '/edit/')+req.params.url);	
+});
+
+app.post('/search/', function(req, res) {
+	Page.find({$or: [{url: {"$regex":req.body.searchbox, "$options":"i"}}, 
+									 {title: {"$regex":req.body.searchbox, "$options":"i"}},
+									 {text: {"$regex":req.body.searchbox, "$options":"i"}}]},
+						function(err, pages) {
+		if (err) res.send(err);		
+		res.end(swig.renderFile('search.html', {term: req.body.searchbox, pages: pages}));
+	});	
 });
     
 app.listen(8080);
