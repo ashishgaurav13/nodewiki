@@ -1,6 +1,6 @@
 Idea
 ====
-To create a page, just go to `/<url-you-have-in-mind>`. Start typing, and once finished, save. You can add links in the page by markdown, like '/<link-url>'. When you go to a page not created, you can start editing directly and create that page. Search searches inside text, title and url. To upload an image, use the upload tab. After uploading, it comes back to the original page.
+To create a page, just go to `/<url-you-have-in-mind>`. Start typing, and once finished, save. You can add links in the page by markdown, like `/<link-url>`. When you go to a page not created, you can start editing directly and create that page. Search searches inside text, title and url. To upload an image, use the upload tab. After uploading, it comes back to the original page.
 
 Installation
 ========
